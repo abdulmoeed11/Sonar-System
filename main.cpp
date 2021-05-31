@@ -17,14 +17,6 @@ HCSR04  usensor(PTD7,PTD6);
 StepperMotorUni mymotor(PTA17, PTA16, PTC17, PTC16);
 Keypad kpad( PTC4, PTC3, PTC0, PTC7, PTC11, PTC10, PTC6, PTC5);
 TextLCD lcd(PTB8, PTB9, PTB10, PTB11, PTE2, PTE3, TextLCD::LCD16x2); // rs, e, d4-d7
-//PCA9622_LED8x8  matrix( PTE21, PTE20 );     //  for 40pin type mbed
-//PCA9622_LED8x8  matrix( D14, D15 );   //  for Arduino type mbed
-//PCA9622_LED8x8  matrix( dp5, dp27 );  //  for mbed LPC1114
-//float func( float x, float y, float t );    //  function to make 8x8 image
-// HT1632_LedMatrix led( PTE5, PTE21, PTE20, PTE30 , PTE29, PTE23);
-
-
-
 
 
 
@@ -39,11 +31,6 @@ int rem;
 int quot;
 int dire = 2;
 long countd = 0;
-
-
-
-
-
 
 
 
@@ -105,29 +92,6 @@ void Init_clear(void)
 
 
 
-/*
-
- float func( float x, float y, float t )
-   {
-   //#define     DISPLAY_OFFSET  3.5
-   #define     DISPLAY_OFFSET  0
-   #define     SIZE            0.3
- 
-       float   s;
- 
-       x   = (x - DISPLAY_OFFSET) * SIZE;
-       y   = (y - DISPLAY_OFFSET) * SIZE;
- 
-       s   = cos( powf( x * x + y * y, 0.5 ) - t );
-       return ( powf( s, 4.0 ) ); 
- 
- }
-
-*/
-
-
-
-
 
 int main()
 {
@@ -150,53 +114,6 @@ int main()
     spi.format(8,0);                // 8-bit format, mode 0,0
     spi.frequency(1000000);         // SCLK = 1 MHz
     Init_MAX7219();                 // Initialize the LED controller
- //   while (1) {
-//        for(int i=1; i<9; i++)      // Write first character (8 rows)
-//            SPI_Write2(i,led1[i-1]);
-//        wait(1);                    // 1 sec delay
-//        for(int i=1; i<9; i++)      // Write second character
-//            SPI_Write2(i,led2[i-1]);
-//        wait(1);                    // 1 sec delay
-//    }
-//
-// 
- 
- 
- 
- 
-    //while(1){
-//        led.plot(0, 0, '.');
-//        
-//        }      
-// 
- 
- 
- 
-/*    float   image[ 8 ][ 8 ];  //
-       int     countn   = 0;
- 
-       matrix.start();
- 
-       while(1) {
- 
-           //  making 8x8 image to "image" array
-           for ( int a = 0; a < 8; a++ )
-               for ( int b = 0; b < 8; b++ )
-                    image[ a ][ b ]   = func( 1, 2, 3 );
-                   //image[ a ][ b ]   = func( a, b, countn * 0.2 );
- 
-           matrix.set_data( image );
- 
-           countn++;
-           wait( 0.05 );
-       }
-   
- */
-  
- 
- 
- 
- 
  
  
  
@@ -229,11 +146,6 @@ int main()
         dist=usensor.get_dist_cm();
         
         if ( dist < range){
-           
-           /* if ( i == 1){} else{
-           mymotor.move_steps( 24 ); 
-           wait( 1 ); }
-            */
             i = 1;
             myled = 1;
             
@@ -351,22 +263,3 @@ int main()
 }
 
 
-
-/*include "StepperMotorUni.h"
- *
- *  StepperMotorUni motor( p26, p25, p24, p23 );
- *
- *  int main()
- *  {
- *      motor.set_pps( 50 );
- *
- *      while ( 1 ) {
- *          motor.move_steps( 24 );
- *          wait( 1 );
- *
- *          motor.move_steps( -24 );
- *          wait( 1 );
- *      }
- *  }
- */
- 
